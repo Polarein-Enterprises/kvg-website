@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="In-house patternmaking at the KVG facility — representative image">
+<title>Patternshop</title>
+<rect width="800" height="600" fill="#F5F8FA"/>
+<rect x="1" y="1" width="798" height="598" fill="none" stroke="#E1E7ED" stroke-width="2"/>
+<g fill="none" stroke="#9AA5B1" stroke-width="7" stroke-linejoin="round" stroke-linecap="round">
+  <rect x="250" y="230" width="300" height="180" rx="8" fill="#EFF5FB"/>
+  <path d="M300 410 q100 -120 200 0"/>
+  <line x1="290" y1="290" x2="510" y2="290"/>
+  <line x1="290" y1="330" x2="430" y2="330"/>
+  <circle cx="400" cy="330" r="8" fill="#9AA5B1"/>
+</g>
+<text x="400" y="500" text-anchor="middle" font-family="Barlow, Arial, sans-serif" font-weight="600" font-size="34" fill="#5C6670">Patternmaking</text>
+<text x="400" y="535" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" fill="#9AA5B1">representative image</text>
+</svg>

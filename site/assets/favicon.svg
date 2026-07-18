@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="KVG">
+  <title>KVG</title>
+  <rect width="64" height="64" rx="12" fill="#FFFFFF"/>
+  <rect x="9"  y="12" width="7" height="40" rx="3.5" fill="#E74903"/>
+  <rect x="20" y="12" width="7" height="40" rx="3.5" fill="#0F6851"/>
+  <rect x="31" y="12" width="7" height="40" rx="3.5" fill="#1A4062"/>
+  <rect x="42" y="12" width="7" height="40" rx="3.5" fill="#E74903"/>
+  <rect x="53" y="12" width="7" height="40" rx="3.5" fill="#0F6851"/>
+</svg>

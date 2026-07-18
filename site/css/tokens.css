@@ -1,0 +1,179 @@
+/* ==========================================================================
+   KVG Enterprises — Design Tokens
+   Source of truth: DESIGN_SYSTEM_RECOMMENDATIONS.md §4.2 / §4.3 / §4.4
+   Every color, type, space, radius, shadow and layout value exits through a
+   token here. Hex values must NEVER appear in component CSS.
+   ========================================================================== */
+
+:root {
+  /* ----------------------------------------------------------------------
+     §4.2  COLOR — Core brand scales
+     ---------------------------------------------------------------------- */
+
+  /* Primary (Blue — "G" / Growth · structural workhorse hue) */
+  --color-primary-50:  #EFF5FB; /* tinted section bg, table zebra, info surfaces */
+  --color-primary-100: #D9E8F5; /* hover fills on light, selected states, chips */
+  --color-primary-200: #C9D7E4; /* muted link tint on dark panels (mega-menu links) */
+  --color-primary-300: #7FB0DC; /* decorative accents, chart secondary, focus (dark) */
+  --color-primary-500: #3D86C6; /* BRAND. Large text (>=24px / >=18.7px bold) + UI only. 3.9:1 */
+  --color-primary-600: #2D6EA8; /* workhorse: links, button fill, active nav. 5.4:1 AA */
+  --color-primary-700: #235685; /* button/link hover/pressed, breadcrumb current. 7.6:1 AAA */
+  --color-primary-800: #1A4062; /* dark section bands, mega-menu panel */
+  --color-primary-900: #122C44; /* footer bg, sticky-header scrolled state */
+  --color-primary-950: #0D2236; /* deepest blue — footer bottom bar */
+
+  /* Secondary (Green — "V" / Value · trust, quality, success) */
+  --color-secondary-50:  #EAF4F0; /* quality/eco-tinted surfaces */
+  --color-secondary-100: #CFE7DD; /* badge fills, quality table header tint */
+  --color-secondary-500: #0F6851; /* BRAND. Secondary buttons/outlines, checkmarks, success. 6.7:1 AA */
+  --color-secondary-700: #0A4A39; /* secondary hover, dark green accents. 9.9:1 */
+
+  /* Accent (Orange — "K" / Knowledge · the scarce action color) */
+  --color-accent-50:  #FDEEE6; /* highlight callout backgrounds (sparingly) */
+  --color-accent-100: #FAD5C2;
+  --color-accent-500: #E74903; /* BRAND. Display accents, underline bar, badge dots. 3.9:1 — not body text */
+  --color-accent-600: #B93A02; /* accessible: primary CTA fill (white 5.7:1 AA), orange text any size */
+  --color-accent-700: #933002; /* CTA pressed. 7.9:1 */
+
+  /* ---- Neutrals ---- */
+  --color-ink-900: #1F2933; /* headings, near-black (avoid pure #000 on white) */
+  --color-ink-700: #333333; /* primary body text. 12.6:1 */
+  --color-ink-500: #5C6670; /* secondary text, captions, meta. never lighter for running text */
+  --color-ink-300: #9AA5B1; /* disabled text, placeholders (decorative only) */
+  --color-line:        #E1E7ED; /* borders, hairlines, table rules */
+  --color-surface-alt: #F5F8FA; /* alternating section bands */
+  --color-surface:     #FFFFFF; /* default background */
+
+  /* ---- Semantic states ---- */
+  --color-success: #0F6851; /* reuse brand green — spec-table checkmarks */
+  --color-warning: #B45309; /* form warnings; distinct from brand orange */
+  --color-error:   #B3261E; /* form validation errors, 4.5:1+ on white */
+  --color-info:    #2D6EA8; /* reuse primary-600 */
+  --color-focus:   #2D6EA8; /* focus ring — 2px outline + 2px offset everywhere */
+
+  /* Semantic tint surfaces (alert/notice backgrounds & borders) */
+  --color-warning-50:  #FFF7ED;
+  --color-warning-100: #FED7AA;
+  --color-error-50:    #FDECEA;
+  --color-error-100:   #F5C6C2;
+
+  /* ----------------------------------------------------------------------
+     §4.3  TYPOGRAPHY
+     ---------------------------------------------------------------------- */
+
+  /* Families */
+  --font-display: "Barlow", "Helvetica Neue", Arial, sans-serif;
+  --font-body:    "Inter", "Segoe UI", Arial, sans-serif;
+  --font-mono:    "IBM Plex Mono", Consolas, monospace;
+
+  /* Font weights */
+  --fw-regular:  400;
+  --fw-medium:   500;
+  --fw-semibold: 600;
+  --fw-bold:     700;
+
+  /* Type scale — desktop defaults (rem, 1.25 ratio, 16px root).
+     Sizes shift to mobile values in the responsive block below. */
+  --text-display-size: 3.5rem;   /* 56px */
+  --text-display-lh:   4rem;     /* 64px */
+  --text-h1-size:      2.5rem;   /* 40px */
+  --text-h1-lh:        3rem;     /* 48px */
+  --text-h2-size:      2rem;     /* 32px */
+  --text-h2-lh:        2.5rem;   /* 40px */
+  --text-h3-size:      1.5rem;   /* 24px */
+  --text-h3-lh:        2rem;     /* 32px */
+  --text-h4-size:      1.25rem;  /* 20px */
+  --text-h4-lh:        1.75rem;  /* 28px */
+  --text-lead-size:    1.25rem;  /* 20px */
+  --text-lead-lh:      2rem;     /* 32px */
+  --text-body-size:    1.0625rem;/* 17px — deliberately above 16px floor */
+  --text-body-lh:      1.75rem;  /* 28px */
+  --text-small-size:   0.9375rem;/* 15px */
+  --text-small-lh:     1.5rem;   /* 24px */
+  --text-eyebrow-size: 0.8125rem;/* 13px */
+  --text-eyebrow-lh:   1rem;     /* 16px */
+  --text-eyebrow-tracking: 0.08em;
+  --text-button-size:  1rem;     /* 16px */
+  --text-button-lh:    1.5rem;   /* 24px */
+
+  /* ----------------------------------------------------------------------
+     §4.4  SPACING · GRID · LAYOUT
+     ---------------------------------------------------------------------- */
+
+  /* Spacing scale — base unit 8px */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  24px;
+  --space-6:  32px;
+  --space-7:  40px;
+  --space-8:  48px;
+  --space-9:  64px;
+  --space-10: 80px;
+  --space-11: 96px;
+  --space-12: 128px;
+
+  /* Section band padding */
+  --section-pad:         96px; /* desktop major band */
+  --section-pad-compact: 64px; /* compact band */
+  --section-pad-mobile:  56px; /* mobile band */
+
+  /* Container */
+  --container-max:          1280px;
+  --container-pad:          32px; /* desktop side padding */
+  --container-pad-mobile:   20px; /* mobile side padding */
+
+  /* Grid */
+  --grid-columns: 12;
+  --grid-gutter:  24px;
+
+  /* Breakpoints (for reference in JS / documentation; media queries below) */
+  --bp-xs: 480px;
+  --bp-sm: 768px;
+  --bp-md: 1024px;
+  --bp-lg: 1280px;
+
+  /* Radii */
+  --radius-sm: 4px;  /* buttons, inputs */
+  --radius-md: 8px;  /* cards */
+  --radius-lg: 12px; /* imagery, feature panels */
+
+  /* Elevation — two shadows only */
+  --shadow-sm: 0 1px 3px rgba(18, 44, 68, .08);
+  --shadow-md: 0 6px 24px rgba(18, 44, 68, .10);
+
+  /* Motion */
+  --motion-fast: 200ms;
+  --motion-ease: ease-out;
+
+  /* Brand triad convenience aliases (tricolor bar, triad stats, pillar cards) */
+  --brand-k: var(--color-accent-500);    /* Knowledge — orange */
+  --brand-v: var(--color-secondary-500); /* Value — green */
+  --brand-g: var(--color-primary-500);   /* Growth — blue */
+
+  /* Header heights (component reference) */
+  --header-utility-h: 40px;
+  --header-main-h:    88px;  /* raised to seat the larger logo without wrapping */
+
+  /* Header logo + compact header CTA */
+  --header-logo-h:    62px;  /* ~19% larger than the previous 52px */
+  --header-cta-pad-y: 10px;  /* compact "Request a Quote" button in the main bar */
+  --header-cta-pad-x: 18px;
+}
+
+/* ---- Responsive type scale (mobile values per §4.3) ---- */
+@media (max-width: 768px) {
+  :root {
+    --text-display-size: 2.25rem;  /* 36px */
+    --text-display-lh:   2.75rem;  /* 44px */
+    --text-h1-size:      1.875rem; /* 30px */
+    --text-h1-lh:        2.375rem; /* 38px */
+    --text-h2-size:      1.5625rem;/* 25px */
+    --text-h2-lh:        2.0625rem;/* 33px */
+    --text-h3-size:      1.3125rem;/* 21px */
+    --text-h3-lh:        1.8125rem;/* 29px */
+    --text-lead-size:    1.125rem; /* 18px */
+    --text-lead-lh:      1.8125rem;/* 29px */
+  }
+}

@@ -1,0 +1,67 @@
+name: Deploy site to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Rewrite root-relative URLs for project-site hosting
+        env:
+          PREFIX: /${{ github.event.repository.name }}
+        run: |
+          cp -r site _site
+          python3 - <<'EOF'
+          import os, re, pathlib
+          prefix = os.environ["PREFIX"].rstrip("/")
+          root = pathlib.Path("_site")
+          # attributes that carry root-relative URLs in HTML
+          attr_re = re.compile(r'((?:href|src|content|action|poster|data-src)=")(/(?!/))')
+          css_re = re.compile(r'(url\(\s*["\']?)(/(?!/))')
+          srcset_re = re.compile(r'(srcset=")([^"]+)(")')
+
+          def fix_srcset(m):
+              parts = [p.strip() for p in m.group(2).split(",")]
+              fixed = [(prefix + p) if p.startswith("/") and not p.startswith("//") else p for p in parts]
+              return m.group(1) + ", ".join(fixed) + m.group(3)
+
+          for f in root.rglob("*"):
+              if f.suffix in (".html", ".css", ".js"):
+                  text = f.read_text(encoding="utf-8")
+                  if f.suffix == ".css":
+                      text = css_re.sub(lambda m: m.group(1) + prefix + "/", text)
+                  else:
+                      text = attr_re.sub(lambda m: m.group(1) + prefix + "/", text)
+                      text = css_re.sub(lambda m: m.group(1) + prefix + "/", text)
+                      text = srcset_re.sub(fix_srcset, text)
+                  f.write_text(text, encoding="utf-8")
+          print("Rewrote root-relative URLs with prefix:", prefix)
+          EOF
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Quality inspection and measurement at the KVG facility — representative image">
+<title>Inspection</title>
+<rect width="800" height="600" fill="#F5F8FA"/>
+<rect x="1" y="1" width="798" height="598" fill="none" stroke="#E1E7ED" stroke-width="2"/>
+<g fill="none" stroke="#9AA5B1" stroke-width="7" stroke-linejoin="round" stroke-linecap="round">
+  <circle cx="360" cy="300" r="90" fill="#EFF5FB"/>
+  <line x1="425" y1="365" x2="500" y2="440"/>
+  <path d="M330 300 l25 25 l50 -55"/>
+</g>
+<text x="400" y="500" text-anchor="middle" font-family="Barlow, Arial, sans-serif" font-weight="600" font-size="34" fill="#5C6670">Inspection</text>
+<text x="400" y="535" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" fill="#9AA5B1">representative image</text>
+</svg>

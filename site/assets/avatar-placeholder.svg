@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-label="Team member portrait — placeholder">
+<title>Portrait placeholder</title>
+<rect width="800" height="800" fill="#F5F8FA"/>
+<rect x="1" y="1" width="798" height="798" fill="none" stroke="#E1E7ED" stroke-width="2"/>
+<g>
+  <circle cx="400" cy="330" r="110" fill="#EFF5FB" stroke="#9AA5B1" stroke-width="7"/>
+  <path d="M240 620 q0 -160 160 -160 q160 0 160 160 z" fill="#EFF5FB" stroke="#9AA5B1" stroke-width="7" stroke-linejoin="round"/>
+</g>
+<text x="400" y="710" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="22" fill="#9AA5B1">photo to be added</text>
+</svg>

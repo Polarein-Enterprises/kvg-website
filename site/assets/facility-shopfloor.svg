@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="KVG manufacturing shop floor — representative image">
+<title>Shop floor</title>
+<rect width="800" height="600" fill="#F5F8FA"/>
+<rect x="1" y="1" width="798" height="598" fill="none" stroke="#E1E7ED" stroke-width="2"/>
+<g fill="none" stroke="#9AA5B1" stroke-width="7" stroke-linejoin="round" stroke-linecap="round">
+  <path d="M120 400 h560"/>
+  <rect x="170" y="250" width="150" height="150" fill="#EFF5FB"/>
+  <rect x="360" y="210" width="150" height="190" fill="#EFF5FB"/>
+  <rect x="540" y="280" width="120" height="120" fill="#EFF5FB"/>
+  <path d="M170 250 l75 -50 l75 50"/>
+  <path d="M360 210 l75 -45 l75 45"/>
+</g>
+<text x="400" y="500" text-anchor="middle" font-family="Barlow, Arial, sans-serif" font-weight="600" font-size="34" fill="#5C6670">Shop Floor</text>
+<text x="400" y="535" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" fill="#9AA5B1">representative image</text>
+</svg>

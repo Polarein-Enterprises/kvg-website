@@ -1,0 +1,9 @@
+# Internal consulting material — never publish
+COMPETITOR_ANALYSIS_*.md
+DESIGN_SYSTEM_RECOMMENDATIONS.md
+00_RESEARCH_OVERVIEW.md
+
+# Local tooling / session artifacts
+.claude/
+*.output
+__pycache__/

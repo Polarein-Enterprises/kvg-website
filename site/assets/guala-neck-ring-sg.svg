@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-label="Single gob Guala neck ring — representative image">
+<title>Single Gob Guala Neck Ring</title>
+<rect width="800" height="800" fill="#F5F8FA"/>
+<rect x="1" y="1" width="798" height="798" fill="none" stroke="#E1E7ED" stroke-width="2"/>
+<g>
+    <circle cx="400" cy="380" r="150" fill="#F5F8FA" stroke="#9AA5B1" stroke-width="7" stroke-linejoin="round"/>
+    <circle cx="400" cy="380" r="72" fill="#FFFFFF" stroke="#9AA5B1" stroke-width="7"/>
+    <circle cx="400" cy="380" r="108" fill="none" stroke="#9AA5B1" stroke-width="4"/>
+    <line x1="400" y1="230" x2="400" y2="530" stroke="#9AA5B1" stroke-width="7"/>
+</g>
+<text x="400" y="690" text-anchor="middle" font-family="Barlow, Arial, sans-serif" font-weight="600" font-size="38" fill="#5C6670">Single Gob (SG)</text>
+<text x="400" y="730" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="20" fill="#9AA5B1">representative image</text>
+</svg>
