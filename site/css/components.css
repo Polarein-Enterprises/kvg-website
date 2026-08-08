@@ -193,8 +193,14 @@
   min-height: var(--header-main-h);
   padding-block: var(--space-3);
 }
-.site-logo { display: inline-flex; align-items: center; }
-.site-logo img { height: var(--header-logo-h); width: auto; }
+.site-logo { display: inline-flex; align-items: center; gap: var(--space-3); }
+.site-logo__mark { height: var(--header-logo-h); width: auto; display: block; }
+.site-logo__wordmark { display: flex; flex-direction: column; line-height: 1.05; }
+.site-logo__kvg { font-family: var(--font-display); font-weight: 700; font-size: 28px; letter-spacing: 0; }
+.site-logo__kvg .k { color: var(--color-accent-500); }
+.site-logo__kvg .v { color: var(--color-secondary-500); }
+.site-logo__kvg .g { color: var(--color-primary-500); }
+.site-logo__suffix { font-family: var(--font-display); font-weight: 600; font-size: 13px; color: var(--color-primary-500); white-space: nowrap; }
 
 /* Primary nav */
 .primary-nav { display: flex; align-items: center; gap: var(--space-2); }
@@ -1213,11 +1219,10 @@
 /* Deliberate 5-column footer: brand | Products (1) | Products (2) | Company | Contact */
 .footer-grid {
   display: grid;
-  grid-template-columns: 1.6fr 1fr 1fr 1fr 1.2fr;
+  grid-template-columns: 1.6fr 1fr 1.2fr;
   gap: var(--space-7);
   align-items: start;
 }
-@media (max-width: 1024px) { .footer-grid { grid-template-columns: 1fr 1fr 1fr; gap: var(--space-7); } }
 @media (max-width: 720px)  { .footer-grid { grid-template-columns: 1fr 1fr; gap: var(--space-6); } }
 @media (max-width: 480px)  { .footer-grid { grid-template-columns: 1fr; } }
 /* Footer hierarchy mirrors the mega-menu: size/weight/color, no indentation.
@@ -1240,7 +1245,14 @@
 .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: var(--space-2); padding: 0; margin: 0; }
 .footer-col a { color: var(--color-primary-300); font-size: var(--text-small-size); line-height: var(--text-small-lh); transition: color var(--motion-fast) var(--motion-ease); }
 .footer-col a:hover { color: var(--color-surface); }
-.footer-logo img { height: 56px; width: auto; margin-bottom: var(--space-4); }
+.footer-logo { display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-4); }
+.footer-logo__mark { height: 48px; width: auto; display: block; }
+.footer-logo__wordmark { display: flex; flex-direction: column; line-height: 1.05; }
+.footer-logo__kvg { font-family: var(--font-display); font-weight: 700; font-size: 24px; letter-spacing: 0; }
+.footer-logo__kvg .k { color: var(--color-accent-500); }
+.footer-logo__kvg .v { color: var(--color-secondary-500); }
+.footer-logo__kvg .g { color: var(--color-primary-300); }
+.footer-logo__suffix { font-family: var(--font-display); font-weight: 600; font-size: 12px; color: var(--color-primary-200); white-space: nowrap; }
 .footer-blurb { color: var(--color-primary-300); font-size: var(--text-small-size); line-height: var(--text-small-lh); margin-bottom: var(--space-3); }
 .footer-tagline { color: var(--color-primary-200); font-family: var(--font-display); font-weight: var(--fw-semibold); letter-spacing: .04em; }
 .footer-nap { font-style: normal; font-size: var(--text-small-size); line-height: 1.7; }
@@ -1297,6 +1309,10 @@
    MOBILE NAV (drawer) + responsive header behavior
    ========================================================================== */
 @media (max-width: 1024px) {
+  /* Header must out-stack .nav-backdrop (z-index 640) at the root level, or the
+     entire drawer subtree — including every nav link — paints underneath the
+     backdrop and swallows all clicks despite its own higher local z-index. */
+  .site-header { z-index: 660; }
   .nav-toggle { display: flex; }
   .nav-cta-mobile { display: block; margin-top: var(--space-4); }
   .header-actions { display: none; } /* CTA moves into the drawer */
