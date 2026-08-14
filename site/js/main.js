@@ -34,6 +34,7 @@
     initReveal();
     initFaqAccordion();
     initFileUpload();
+    initExhibition();
   });
 
   /* ----------------------------------------------------------------------
@@ -485,5 +486,124 @@
         }
       });
     });
+  }
+
+  /* ----------------------------------------------------------------------
+     Exhibition carousel — one media item at a time. A photo holds for
+     PHOTO_MS then advances; a video advances on its own "ended" event so the
+     clip is never cut off. Only runs while the carousel is on screen.
+     ---------------------------------------------------------------------- */
+  function initExhibition() {
+    var root = document.querySelector("[data-exhibition]");
+    if (!root) return;
+
+    var slides = root.querySelectorAll(".exhibition__slide");
+    if (slides.length < 2) return;
+
+    var dots = root.querySelectorAll(".exhibition__dot");
+    var PHOTO_MS = 3000;
+    var index = 0;
+    var timer = null;
+    var paused = false;
+    var observer = null; // kept referenced so it is not collected
+
+    var clearTimer = function () {
+      if (timer) { window.clearTimeout(timer); timer = null; }
+    };
+
+    var mediaOf = function (i) { return slides[i].querySelector("video"); };
+
+    // Play (or time) whatever slide is currently showing.
+    var start = function () {
+      clearTimer();
+      if (paused) return;
+
+      var video = mediaOf(index);
+      if (!video) {
+        // A photo simply holds for PHOTO_MS, then hands off.
+        timer = window.setTimeout(advance, PHOTO_MS);
+        return;
+      }
+
+      // Safety net: "ended" is the normal hand-off, but a clip whose playback
+      // never actually progresses (blocked autoplay, data-saver, stalled
+      // decode) would never fire it and would freeze the reel. So always arm a
+      // timer for a little longer than the clip needs; whichever fires first
+      // wins, and show() clears the loser.
+      var budget = isFinite(video.duration) && video.duration > 0
+        ? (video.duration * 1000) + 1200
+        : PHOTO_MS;
+      timer = window.setTimeout(advance, budget);
+
+      // Muted playback is required for autoplay. If the browser blocks it
+      // outright, drop to photo timing rather than waiting out the clip.
+      var play = video.play();
+      if (play && typeof play.catch === "function") {
+        play.catch(function () {
+          if (paused) return;
+          clearTimer();
+          timer = window.setTimeout(advance, PHOTO_MS);
+        });
+      }
+    };
+
+    var show = function (next) {
+      clearTimer();
+
+      // Stop and rewind the outgoing video so it does not keep playing unseen.
+      var prevVideo = mediaOf(index);
+      if (prevVideo) { prevVideo.pause(); prevVideo.currentTime = 0; }
+
+      index = (next + slides.length) % slides.length;
+
+      Array.prototype.forEach.call(slides, function (s, i) {
+        s.classList.toggle("is-active", i === index);
+      });
+      Array.prototype.forEach.call(dots, function (d, i) {
+        d.classList.toggle("is-active", i === index);
+        d.setAttribute("aria-selected", i === index ? "true" : "false");
+      });
+
+      start();
+    };
+
+    var advance = function () { show(index + 1); };
+
+    // A video hands off as soon as it finishes; one that fails to load must
+    // not deadlock the reel either.
+    Array.prototype.forEach.call(slides, function (slide) {
+      var video = slide.querySelector("video");
+      if (!video) return;
+      var handOff = function () {
+        if (slide.classList.contains("is-active")) advance();
+      };
+      video.addEventListener("ended", handOff);
+      video.addEventListener("error", handOff);
+    });
+
+    Array.prototype.forEach.call(dots, function (dot, i) {
+      dot.addEventListener("click", function () { show(i); });
+    });
+
+    // Pause while scrolled out of view. This only ever pauses/resumes — the
+    // reel is started unconditionally below, so it still runs if
+    // IntersectionObserver is unavailable or never reports an intersection.
+    if ("IntersectionObserver" in window) {
+      observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          paused = !entry.isIntersecting;
+          if (paused) {
+            clearTimer();
+            var v = mediaOf(index);
+            if (v) v.pause();
+          } else {
+            start();
+          }
+        });
+      }, { threshold: 0.25 });
+      observer.observe(root);
+    }
+
+    show(0);
   }
 })();

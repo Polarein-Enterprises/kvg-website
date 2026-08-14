@@ -7,3 +7,10 @@ DESIGN_SYSTEM_RECOMMENDATIONS.md
 .claude/
 *.output
 __pycache__/
+
+# Raw client asset dump (source-of-truth photography and 4K exhibition footage).
+# Web-ready derivatives live in site/assets/products and site/assets/exhibition;
+# the originals include files far above GitHub's 100 MB per-file limit.
+# Leading slash is required: git is case-insensitive here (core.ignorecase=true),
+# so an unanchored "PRODUCTS/" would also ignore site/products/.
+/PRODUCTS/

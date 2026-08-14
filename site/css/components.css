@@ -1219,10 +1219,11 @@
 /* Deliberate 5-column footer: brand | Products (1) | Products (2) | Company | Contact */
 .footer-grid {
   display: grid;
-  grid-template-columns: 1.6fr 1fr 1.2fr;
+  grid-template-columns: 1.5fr 1.2fr 1fr 1.2fr;
   gap: var(--space-7);
   align-items: start;
 }
+@media (max-width: 1024px) { .footer-grid { grid-template-columns: 1fr 1fr 1fr; gap: var(--space-7); } }
 @media (max-width: 720px)  { .footer-grid { grid-template-columns: 1fr 1fr; gap: var(--space-6); } }
 @media (max-width: 480px)  { .footer-grid { grid-template-columns: 1fr; } }
 /* Footer hierarchy mirrors the mega-menu: size/weight/color, no indentation.
@@ -1396,4 +1397,78 @@
 /* Hide desktop-only utility groups gracefully on very small screens */
 @media (max-width: 560px) {
   .utility-bar__badge { display: none; }
+}
+
+/* ==========================================================================
+   PRODUCT GALLERY (product detail pages)
+   ========================================================================== */
+.product-hero-media {
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--color-surface-alt);
+}
+.product-hero-media img { display: block; width: 100%; height: auto; aspect-ratio: 4/3; object-fit: cover; }
+
+.product-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--space-4);
+}
+.product-gallery figure {
+  margin: 0;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--color-surface);
+}
+.product-gallery img {
+  display: block; width: 100%; height: auto;
+  aspect-ratio: 4/3; object-fit: cover;
+  transition: transform var(--motion-fast) var(--motion-ease);
+}
+.product-gallery figure:hover img { transform: scale(1.03); }
+
+/* ==========================================================================
+   EXHIBITION CAROOUSEL (§ homepage) — one media item at a time, auto-advancing
+   ========================================================================== */
+.exhibition {
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--color-ink-900);
+  aspect-ratio: 16/9;
+}
+.exhibition__slide {
+  position: absolute; inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--motion-slow, 500ms) var(--motion-ease);
+}
+.exhibition__slide.is-active { opacity: 1; visibility: visible; }
+.exhibition__slide > img,
+.exhibition__slide > video {
+  display: block; width: 100%; height: 100%; object-fit: cover;
+}
+
+/* Progress dots */
+.exhibition__dots {
+  position: absolute; bottom: var(--space-4); left: 50%;
+  transform: translateX(-50%);
+  display: flex; gap: var(--space-2);
+  z-index: 2;
+}
+.exhibition__dot {
+  width: 10px; height: 10px; padding: 0;
+  border: 1px solid rgba(255,255,255,.85);
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  transition: background var(--motion-fast) var(--motion-ease);
+}
+.exhibition__dot.is-active { background: var(--color-surface); }
+.exhibition__dot:focus-visible { outline: 2px solid var(--color-surface); outline-offset: 2px; }
+
+@media (max-width: 560px) {
+  .exhibition { aspect-ratio: 4/3; }
 }
