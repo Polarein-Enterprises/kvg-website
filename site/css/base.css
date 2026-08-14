@@ -246,7 +246,9 @@ a.link:hover { color: var(--color-primary-700); }
 }
 @media (max-width: 1279.98px) { .grid-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); } } /* 3-up 1024-1279 */
 @media (max-width: 1023.98px) { .grid-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } } /* 2-up 640-1023 */
-@media (max-width: 639.98px)  { .grid-cards { grid-template-columns: 1fr; } }                       /* 1-up below 640 */
+/* Stays 2-up on phones — one card per row made the page far too long to scan.
+   Card internals shrink instead (see .category-card in components.css). */
+@media (max-width: 639.98px)  { .grid-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-3); } }
 
 /* Collapse the 12-col grid on small screens */
 @media (max-width: 768px) {

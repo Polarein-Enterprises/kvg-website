@@ -922,15 +922,23 @@
   grid-template-columns: repeat(4, 1fr);
   gap: var(--space-6);
 }
-@media (max-width: 768px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 400px) { .stats-grid { grid-template-columns: 1fr; } }
+.stats-grid--3 { grid-template-columns: repeat(3, 1fr); }
+/* Stats stay on a single line at every width — the numbers are the headline and
+   reflowing them into a column buried them. Type and padding shrink instead. */
+@media (max-width: 768px) {
+  .stats-grid { gap: var(--space-2); }
+}
 .stat {
   text-align: center;
   padding: var(--space-5);
   border-left: 1px solid var(--color-line);
 }
 .stat:first-child { border-left: none; }
-@media (max-width: 768px) { .stat { border-left: none; } }
+@media (max-width: 768px) {
+  .stat { padding: var(--space-3) var(--space-1); }
+  .stat__value { font-size: clamp(1.5rem, 7vw, 2.25rem); }
+  .stat__label { font-size: 0.6875rem; line-height: 1.3; margin-top: var(--space-1); }
+}
 .stat__value {
   font-family: var(--font-display);
   font-size: var(--text-display-size);
@@ -951,7 +959,10 @@
   align-items: stretch;
   gap: var(--grid-gutter);
 }
-@media (max-width: 768px) { .pillar-grid { grid-template-columns: 1fr; } }
+/* 2-up on phones rather than a single stacked column, with tighter internals. */
+@media (max-width: 768px) {
+  .pillar-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-3); }
+}
 .pillar-card {
   height: 100%;
   padding: var(--space-6);
@@ -996,7 +1007,12 @@
   margin-top: var(--space-6);
 }
 @media (max-width: 900px) { .capability-list { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 560px) { .capability-list { grid-template-columns: 1fr; } }
+/* Keep 2-up on phones; the tiles stack their icon above the text to stay narrow. */
+@media (max-width: 560px) {
+  .capability-list { grid-template-columns: repeat(2, 1fr); gap: var(--space-3); }
+  .capability-item { flex-direction: column; gap: var(--space-2); padding: var(--space-3); }
+  .capability-item svg { width: 22px; height: 22px; }
+}
 .capability-item {
   display: flex;
   align-items: flex-start;
@@ -1472,3 +1488,89 @@
 @media (max-width: 560px) {
   .exhibition { aspect-ratio: 4/3; }
 }
+
+/* ==========================================================================
+   PHONE DENSITY PASS
+   Cards stay 2-up on phones (see .grid-cards / .pillar-grid / .capability-list),
+   so their internals must be thin: smaller type, tighter padding, and blurbs
+   clamped to a couple of lines rather than running the card to full height.
+   ========================================================================== */
+@media (max-width: 639.98px) {
+  /* Product / category cards */
+  .category-card__body { padding: var(--space-3); gap: var(--space-1); }
+  .category-card__title { font-size: 0.9375rem; line-height: 1.25; }
+  .category-card__count { font-size: 0.625rem; }
+  .category-card__body .text-muted {
+    font-size: 0.75rem;
+    line-height: 1.35;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .category-card__footer { margin-top: var(--space-1); }
+  .category-card__footer .link-arrow { font-size: 0.75rem; }
+  .category-card__media { aspect-ratio: 16 / 10; }
+
+  /* Pillar cards (Knowledge / Value / Growth, product feature tiles) */
+  .pillar-card { padding: var(--space-4); }
+  .pillar-card h3 { font-size: 0.9375rem; line-height: 1.25; }
+  .pillar-card p { font-size: 0.75rem; line-height: 1.4; }
+
+  /* Dark capability tiles */
+  .capability-item h3 { font-size: 0.8125rem; line-height: 1.25; }
+  .capability-item p { font-size: 0.6875rem; line-height: 1.35; }
+
+  /* Section headings and intros take less vertical room */
+  .section-head { margin-bottom: var(--space-5); }
+  .product-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-3); }
+}
+
+/* ==========================================================================
+   FOOTER LAYOUT — single centred column at the top, two centred columns in the
+   middle, single centred column at the bottom.
+   ========================================================================== */
+.footer-top {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  padding-bottom: var(--space-8);
+  border-bottom: 1px solid rgba(255,255,255,.12);
+}
+.footer-top .footer-logo { justify-content: center; margin-bottom: 0; }
+.footer-top .footer-blurb { max-width: 60ch; margin: 0; }
+.footer-top .footer-tagline { margin: 0; }
+.footer-top .footer-social { justify-content: center; }
+
+.footer-mid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-8);
+  padding-block: var(--space-8);
+  text-align: center;
+}
+.footer-mid .footer-col { text-align: center; }
+.footer-mid .footer-col__title { text-align: center; }
+.footer-mid .footer-col ul { align-items: center; }
+.footer-mid .footer-catgroup { text-align: center; }
+.footer-mid .footer-catgroup > span { display: block; text-align: center; }
+.footer-mid .footer-nap { text-align: center; }
+.footer-mid address { font-style: normal; }
+
+@media (max-width: 560px) {
+  .footer-mid { gap: var(--space-6); padding-block: var(--space-6); }
+}
+
+.footer-bottom__inner {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: var(--space-2);
+}
+
+/* Company + Contact share one of the two middle columns */
+.footer-stack { display: flex; flex-direction: column; gap: var(--space-7); text-align: center; }
+.footer-stack .footer-col ul { align-items: center; }
