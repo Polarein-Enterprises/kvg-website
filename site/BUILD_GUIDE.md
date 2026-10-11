@@ -21,15 +21,35 @@ Design tokens: `/css/tokens.css` · Base layer: `/css/base.css` · Components: `
 |---|---|
 | Legal name | **KVG Enterprises Pvt. Ltd.** (never the legacy misspelling) |
 | Business | Manufacturer & supplier of moulds, variables, spare parts and allied equipment for the container glass industry (also serves tableware glass) |
-| Address | B-43, Sector 2, Noida – 201301, Uttar Pradesh, India |
-| Phone (link) | `tel:+911204120001` |
-| Phone (display) | `+91 120 4120 001` |
-| Email | `contact@kvgindia.com` |
-| WhatsApp | `https://wa.me/911204120001` — add `<!-- TODO: confirm WhatsApp number with KVG -->` at every use |
+| Address — Site 1 | J-87, UPSIDC Surajpur Industrial Area Site-5, Kasna Rd, Block L, Surajpur Site V, Greater Noida – 201312, Uttar Pradesh, India |
+| Address — Site 2 | K-25, UPSIDC Surajpur Industrial Area Site-5, Kasna Rd, Block L, Surajpur Site V, Greater Noida – 201312, Uttar Pradesh, India |
+| Phone (link) | `tel:+919910249102` · `tel:+919810006584` |
+| Phone (display) | `+91 99102 49102` · `+91 98100 06584` |
+| Email | `pankaj@kvgindia.com` |
+| WhatsApp | `https://wa.me/919910249102` — add `<!-- TODO: confirm WhatsApp number with KVG -->` at every use |
 | Tagline | Knowledge • Value • Growth (K=orange, V=green, G=blue — via tokens/classes only) |
-| Stats | 100+ yrs combined expertise · 40+ yrs individual leadership · 11 product lines · 4 industries |
-| Industries | Food · Beverage · Spirits · Pharmaceutical |
+| Capabilities | 18 VMC & 3 CNC machines · in-house design · pattern making · 3D scanning & prototyping · best casting grades in glass · global shipping |
+| Stats | 100+ yrs combined expertise · 18 VMC machines · 3 CNC turning machines · 4 industries |
+| Industries | Food · Beverage · Spirits · Pharmaceutical (a company fact — there is **no** Industries page) |
 | Vision | "Provide cost effective & highest quality Products in the shortest possible Lead time" |
+
+**Both units carry the same phone, email and hours.** Wherever the address appears in full
+(footer, `/contact/`, `/privacy/`, Organization JSON-LD) it must list **both** Site 1 and Site 2.
+The `Manufacturer` and `LocalBusiness` JSON-LD blocks describe one physical place and stay on
+Site 1, because the geo coordinates belong to that unit. The `/contact/` map pins Site 1 only —
+Site 2's coordinates are not yet confirmed.
+
+**The six capabilities above are the canonical set.** They appear on the homepage capability
+strip and on `/capabilities/`, and the two must agree. Do not add a seventh (no "computerized
+production scheduling", no "established foundry relationships" — those were written before the
+capability list was confirmed and have been removed).
+
+### Pages
+
+There is **no** About page and **no** Industries page. The About content (who we are,
+milestones, vision & mission, Knowledge·Value·Growth, strengths, facility strip) was merged
+into the landing page in that order. `/about/team/` survives as a standalone page, linked from
+the nav as **Team**. Do not recreate `/about/`, and do not repeat landing-page sections on it.
 
 ### Honesty rules (spec §5.9 — non-negotiable)
 
@@ -41,14 +61,20 @@ Design tokens: `/css/tokens.css` · Base layer: `/css/base.css` · Components: `
 
 ## 1. Product taxonomy (memorise — used in nav, footer, breadcrumbs, URLs)
 
-| Category (URL) | Products (slug) |
-|---|---|
-| Moulds & Mould Equipment `/products/moulds/` | Glass Moulds `glass-moulds` · Blanks `blanks` · Mould Holders `mould-holders` |
-| Blank-Side Equipment `/products/blank-side/` | Baffles `baffles` · Funnels `funnels` · Plungers `plungers` · Thimbles `thimbles` |
-| Neck Rings & Closure Systems `/products/neck-rings/` | Guala & Nip Cap Neck Rings `guala-neck-rings` · Neck Ring Holders `neck-ring-holders` · Lock Rings `lock-rings` |
-| Blow-Side Equipment `/products/blow-side/` | Blow Heads `blow-heads` |
+Ten product pages sit **flat** under `/products/`. The two headings below group them on the
+products hub and in the mega-menu, but they are **not** URL segments and have no pages of
+their own.
 
-Product detail URL pattern: `/products/{category}/{product}/`.
+| Group (presentation only) | Products (slug) |
+|---|---|
+| Arms, Take Out & Tooling | Baffle Arms for IS Machines `baffle-arm` · Blow Head Arms `blow-head-arm` · Funnel Arms & Funnel Mechanisms `funnel-arm` · Neckring Arms and Mechanisms `neckring-arm` · Take-Out Arms, Tongs and Mechanisms `take-out` · Inserts for IS Machine Arms and Mechanisms `inserts` · Mould Holders `mould-holder` |
+| Wear Parts & Motion | Shear Shanks for IS-Machine Feeders `shear-shank` · Plunger Cartridges and Mechanisms `plunger` · Cams `cams` |
+
+Product detail URL pattern: `/products/{product}/` — **no category segment.**
+
+> The earlier mould-centric taxonomy (`/products/moulds/`, `/products/blank-side/`,
+> `/products/neck-rings/`, `/products/blow-side/`, and the 11 mould/variable product pages under
+> them) was removed. Do not reintroduce those URLs or product names.
 
 ---
 
@@ -59,25 +85,44 @@ Product detail URL pattern: `/products/{category}/{product}/`.
 | `logo.svg` / `logo-white.svg` | Header (dark logo) / footer (white logo) |
 | `favicon.svg` | Tab icon (bar mark) |
 | `world-map-dots.svg` | Watermark in CTA band & footer (already wired in template) |
-| `hero-placeholder.svg` | Homepage/hero background (1920×900) — replace with real photography |
-| `glass-moulds.svg` `blanks.svg` `mould-holders.svg` `baffles.svg` `funnels.svg` `plungers.svg` `thimbles.svg` `guala-neck-rings.svg` `neck-ring-holders.svg` `lock-rings.svg` `blow-heads.svg` | 11 product images (800×800) — product cards + detail pages |
-| `cat-moulds.svg` `cat-blank-side.svg` `cat-neck-rings.svg` `cat-blow-side.svg` | 4 category images (1200×675) — category cards & page-title bands |
-| `ind-food.svg` `ind-beverage.svg` `ind-spirits.svg` `ind-pharma.svg` | 4 industry tiles (800×600) |
+| `ind-food.svg` `ind-beverage.svg` `ind-spirits.svg` `ind-pharma.svg` | 4 industry tiles (800×600) — **unused** since the Industries page was removed |
+| `avatar-placeholder.svg` | Team-card portrait stand-in until real photographs are supplied |
+| `hero-placeholder.svg`, the 11 `*-moulds/blanks/baffles/...svg` product drawings, `cat-*.svg` | **Unused.** Left over from the mould-era catalogue; kept only as fallback art. Product imagery now comes from `/assets/products/`. |
 
 **Every `<img>` needs a unique, descriptive `alt`** (Appendix A). Decorative images (watermarks, scrims) use `alt=""`.
 
-### 2a. Real photography (live) — `/assets/img/*.jpg`
+### 2a. Photography — first-party only (non-negotiable)
 
-All content imagery (hero, industries, categories, products, facility, about story) now uses **real free-license stock photographs** downloaded to `/assets/img/` (sources: Pexels, `images.pexels.com`). The original line-art SVGs in `/assets/` are **kept as fallback assets** — do not delete. Wiring rules:
+**Every image on this site is either KVG's own photograph or vector art authored for this
+project. There is no stock photography, and none may be added — not "just as a placeholder".**
 
-- Hero background → `/assets/img/hero-home.jpg` (under the existing `.hero__scrim`; `alt=""`, `width="1920" height="1080"`).
-- Industry tiles (4:3) → `/assets/img/ind-{food,beverage,spirits,pharma}.jpg` (keep tile scrim + label overlay).
-- Category cards (16:9) → `/assets/img/cat-{moulds,blank-side,neck-rings,blow-side}.jpg`.
-- Product cards + detail hero (1:1) → `/assets/img/{product}.jpg`. **Same product uses the same photo everywhere site-wide.**
-- Detail-page variant galleries **reuse the parent product photo**; each variant/main image in a detail page is preceded by the HTML comment `<!-- representative stock photograph — replace with KVG product photography -->`.
-- Facility strip + about story → `/assets/img/facility-{shopfloor,cnc,patternshop,inspection}.jpg` and `/assets/img/about-story.jpg` (block images carry `width`/`height` for CLS).
+The previous `/assets/img/*.jpg` set of free-license stock photographs has been **deleted**.
+Three of those files still carried the photographer's XMP credit and rights fields (one read
+*"all rights reserved"* in Turkish, another *"Use with the permission of the artist"*). Those
+strings are leftovers from a photographer's own workflow rather than proof of infringement —
+but the repo held no per-file licence record, so the terms could not be verified from the files.
+They were replaced rather than argued about.
 
-`<meta og:image>` / `twitter:image` and JSON-LD `"image"` values still point to the `.svg` assets (unchanged — do not break existing JSON-LD). Alt text keeps the honest "representative" caveat since these are stock stand-ins, not KVG's own product photography.
+| Path | What it is | Use for |
+|---|---|---|
+| `/assets/products/{slug}/{slug}-NN.webp` | KVG's own product photography | Product cards, detail hero, detail galleries |
+| `/assets/exhibition/*.mp4` · `*.webp` | KVG's own exhibition clips and photos | Homepage exhibition reel |
+| `/assets/photo/*.jpg` | Web-sized crops cut from the two folders above | Hero, facility strips, `og:image` |
+| `/assets/*.svg` | Line art drawn for this project | Industry tiles, category art, icons |
+
+Wiring rules:
+
+- Hero background → `/assets/photo/hero-home.jpg` (under the existing `.hero__scrim`; `alt=""`, `width="1920" height="1080"`).
+- Industry tiles (4:3) → `/assets/ind-{food,beverage,spirits,pharma}.svg` (keep tile scrim + label overlay). **The SVGs carry no baked-in caption** — the tile's `<h3>` is the only label. Do not add text back into them.
+- Facility strip + about story → `/assets/photo/facility-{shopfloor,machining,bench,inspection}.jpg` and `/assets/photo/about-story.jpg` (block images carry `width`/`height` for CLS).
+- Product cards + detail hero + galleries → that product's own `/assets/products/{slug}/` photographs. **Same product uses the same photo everywhere site-wide.**
+- `og:image` / `twitter:image` → `/assets/photo/og-default.jpg` (parts, dark ground) or `/assets/photo/og-facility.jpg` (shop floor) on the nine non-product pages; product pages point at their own `-01` image.
+
+**Adding an image.** Only from KVG's own originals. Never reference a 3–8 k px original directly
+— cut a web-sized derivative into `/assets/photo/` first (centre-crop to the target aspect,
+scale, JPEG ~82). Alt text describes what the photograph actually shows; drop the old
+"representative image" caveat, which applied to the stock stand-ins and no longer applies to
+KVG's own parts.
 
 ---
 
@@ -101,12 +146,11 @@ All content imagery (hero, industries, categories, products, facility, about sto
 
 ```html
 <section class="hero">
-  <div class="hero__media"><img src="/assets/img/hero-home.jpg" alt="" width="1920" height="1080"></div>
+  <div class="hero__media"><img src="/assets/photo/hero-home.jpg" alt="" width="1920" height="1080"></div>
   <div class="hero__scrim"></div>
   <div class="container"><div class="hero__inner">
-    <p class="eyebrow">Container Glass Industry &middot; Noida, India</p>
-    <h1 class="text-display">Precision Moulds &amp; IS Machine Variables that Keep Your Lines Running</h1>
-    <p class="hero__sub">Moulds, variables and spare parts engineered for container and tableware glass production.</p>
+    <h1>Precision IS Machine Variables, Spares &amp; Mechanisms</h1>
+    <p class="hero__sub">Arms, mechanisms, take-out tooling and wear parts for container and tableware glass production.</p>
     <div class="hero__actions">
       <a class="btn btn--primary btn--lg" href="/products/">Explore Products</a>
       <a class="btn btn--outline-white btn--lg" href="/contact/">Request a Quote</a>
@@ -147,14 +191,14 @@ Photo variant: `<section class="page-title-band page-title-band--photo">` with a
 
 ```html
 <article class="product-card reveal">
-  <a class="product-card__media" href="/products/moulds/glass-moulds/"><img src="/assets/img/glass-moulds.jpg" alt="Glass moulds for IS machines — representative image"></a>
+  <a class="product-card__media" href="/products/blow-head-arm/"><img src="/assets/products/blow-head-arm/blow-head-arm-01.webp" alt="Blow Head Arms for container glass IS machines, manufactured by KVG Enterprises"></a>
   <div class="product-card__body">
-    <span class="tag-chip">Moulds</span>
-    <h3 class="product-card__title"><a href="/products/moulds/glass-moulds/">Glass Moulds</a></h3>
-    <p class="product-card__desc">Blank and blow moulds for IS machines, in CI, SG Iron and Aluminium.</p>
+    <span class="tag-chip">Blow-Side Mechanisms</span>
+    <h3 class="product-card__title"><a href="/products/blow-head-arm/">Blow Head Arms</a></h3>
+    <p class="product-card__desc">Blow-side arm assemblies machined to your drawings, in CI, SG Iron and Aluminium.</p>
     <div class="product-card__footer">
-      <a class="link-arrow" href="/products/moulds/glass-moulds/">View Details</a>
-      <a class="btn btn--ghost" href="/contact/?product=glass-moulds">Enquire</a>
+      <a class="link-arrow" href="/products/blow-head-arm/">View Details</a>
+      <a class="btn btn--ghost" href="/contact/?product=blow-head-arm">Enquire</a>
     </div>
   </div>
 </article>
@@ -165,12 +209,12 @@ Grid wrapper: `<div class="grid-cards"> … </div>` (auto 4/3/2/1-up). The `?pro
 
 ```html
 <article class="category-card">
-  <a class="category-card__media" href="/products/neck-rings/"><img src="/assets/img/cat-neck-rings.jpg" alt="Neck rings and closure systems — representative image"></a>
+  <a class="category-card__media" href="/products/neckring-arm/"><img src="/assets/products/neckring-arm/neckring-arm-01.webp" alt="Neckring Arms and Mechanisms for container glass IS machines, manufactured by KVG Enterprises"></a>
   <div class="category-card__body">
-    <h3 class="category-card__title">Neck Rings &amp; Closure Systems</h3>
-    <span class="category-card__count">3 product lines</span>
-    <p class="text-muted">Guala neck rings, holders and lock rings for a reliable closure finish.</p>
-    <div class="category-card__footer"><a class="link-arrow" href="/products/neck-rings/">View category</a></div>
+    <h3 class="category-card__title">Neckring Arms and Mechanisms</h3>
+    <span class="category-card__count">Arms &amp; Mechanisms</span>
+    <p class="text-muted">Arm and mechanism assemblies that carry the neckring through the blank-side cycle.</p>
+    <div class="category-card__footer"><a class="link-arrow" href="/products/neckring-arm/">View details</a></div>
   </div>
 </article>
 ```
@@ -236,20 +280,17 @@ Use the dedicated `.pillar-grid` wrapper (3 equal columns, `align-items:stretch`
 ```
 Use `section--darker` for a `primary-900` band instead of `primary-800`.
 
-### 3.11 Industry tile
+### 3.11 Industry tile — **retired**
 
-```html
-<a class="industry-tile" href="/industries/#food">
-  <img src="/assets/img/ind-food.jpg" alt="Food glass containers — representative image">
-  <div class="industry-tile__scrim"></div>
-  <div class="industry-tile__label"><h3>Food</h3></div>
-</a>
-```
-Put 4 tiles in `<div class="grid-cards">`.
+There is no Industries page and no industry tile anywhere on the site. `.industry-tile` and
+`/assets/ind-*.svg` are kept in the codebase but unused. Do not reintroduce them without asking.
 
 ### 3.12 CTA variations
 
-Pre-footer CTA band is **already in the template**. For an *in-page* CTA (e.g. product-detail "Request a Quote for {Product}"), reuse the band markup:
+**One CTA band per page — the pre-footer one in the template, and nothing else.** Every page
+ends with *"Send us your drawing — get a quote within 48 hours"*; a second in-page `.cta-band`
+above it reads as a duplicate and has been removed everywhere. Do not add one. The markup below
+is kept only as a reference for the band already in the template:
 
 ```html
 <section class="cta-band"><div class="cta-band__map" aria-hidden="true"><img src="/assets/world-map-dots.svg" alt="" width="200" height="100"></div>
@@ -279,17 +320,16 @@ Pre-footer CTA band is **already in the template**. For an *in-page* CTA (e.g. p
   <fieldset class="form-field form-field--full" style="border:0;padding:0">
     <legend class="form-label">Product interest</legend>
     <div class="product-checkbox-grid">
-      <label class="checkbox-item"><input type="checkbox" name="product" value="glass-moulds" data-product="glass-moulds"> Glass Moulds</label>
-      <label class="checkbox-item"><input type="checkbox" name="product" value="blanks" data-product="blanks"> Blanks</label>
-      <label class="checkbox-item"><input type="checkbox" name="product" value="mould-holders" data-product="mould-holders"> Mould Holders</label>
-      <label class="checkbox-item"><input type="checkbox" name="product" value="baffles" data-product="baffles"> Baffles</label>
-      <label class="checkbox-item"><input type="checkbox" name="product" value="funnels" data-product="funnels"> Funnels</label>
-      <label class="checkbox-item"><input type="checkbox" name="product" value="plungers" data-product="plungers"> Plungers</label>
-      <label class="checkbox-item"><input type="checkbox" name="product" value="thimbles" data-product="thimbles"> Thimbles</label>
-      <label class="checkbox-item"><input type="checkbox" name="product" value="guala-neck-rings" data-product="guala-neck-rings"> Guala &amp; Nip Cap Neck Rings</label>
-      <label class="checkbox-item"><input type="checkbox" name="product" value="neck-ring-holders" data-product="neck-ring-holders"> Neck Ring Holders</label>
-      <label class="checkbox-item"><input type="checkbox" name="product" value="lock-rings" data-product="lock-rings"> Lock Rings</label>
-      <label class="checkbox-item"><input type="checkbox" name="product" value="blow-heads" data-product="blow-heads"> Blow Heads</label>
+      <label class="checkbox-item"><input type="checkbox" name="product" value="baffle-arm" data-product="baffle-arm"> Baffle Arms for IS Machines</label>
+      <label class="checkbox-item"><input type="checkbox" name="product" value="blow-head-arm" data-product="blow-head-arm"> Blow Head Arms</label>
+      <label class="checkbox-item"><input type="checkbox" name="product" value="funnel-arm" data-product="funnel-arm"> Funnel Arms &amp; Funnel Mechanisms</label>
+      <label class="checkbox-item"><input type="checkbox" name="product" value="neckring-arm" data-product="neckring-arm"> Neckring Arms and Mechanisms</label>
+      <label class="checkbox-item"><input type="checkbox" name="product" value="take-out" data-product="take-out"> Take-Out Arms, Tongs and Mechanisms</label>
+      <label class="checkbox-item"><input type="checkbox" name="product" value="inserts" data-product="inserts"> Inserts for IS Machine Arms and Mechanisms</label>
+      <label class="checkbox-item"><input type="checkbox" name="product" value="mould-holder" data-product="mould-holder"> Mould Holders</label>
+      <label class="checkbox-item"><input type="checkbox" name="product" value="shear-shank" data-product="shear-shank"> Shear Shanks for IS-Machine Feeders</label>
+      <label class="checkbox-item"><input type="checkbox" name="product" value="plunger" data-product="plunger"> Plunger Cartridges and Mechanisms</label>
+      <label class="checkbox-item"><input type="checkbox" name="product" value="cams" data-product="cams"> Cams</label>
     </div>
   </fieldset>
 
@@ -309,7 +349,7 @@ Pre-footer CTA band is **already in the template**. For an *in-page* CTA (e.g. p
   <div class="form-success">Thank you — our engineers will respond within one business day.</div>
 </form>
 ```
-- `data-enquiry-form` enables `?product=` pre-selection + scroll-to-form.
+- `data-enquiry-form` enables `?product=` pre-selection + scroll-to-form. **Currently inert:** the live `/contact/` form ships without this `<fieldset>`, so nothing carries `data-product` and the `?product=<slug>` links on 11 pages pre-select nothing. Restore the fieldset above to make the loop work again.
 - `data-validate` enables inline validation; `data-demo-success` shows the success state (prototype only — swap for a real backend at launch).
 - **Labels are always visible above fields** — never placeholder-only.
 
@@ -317,10 +357,10 @@ Pre-footer CTA band is **already in the template**. For an *in-page* CTA (e.g. p
 
 ```html
 <div class="download-card">
-  <img class="download-card__thumb" src="/assets/img/cat-moulds.jpg" alt="">
+  <img class="download-card__thumb" src="/assets/photo/facility-machining.jpg" alt="">
   <div class="download-card__body">
     <h3 style="font-size:var(--text-h4-size)">KVG Product Brochure</h3>
-    <p class="text-muted">Overview of all 11 product lines and capabilities.</p>
+    <p class="text-muted">Overview of the product range and manufacturing capabilities.</p>
     <span class="download-card__meta">PDF &middot; 2.4 MB</span>
     <a class="btn btn--blue btn--sm" href="/downloads/kvg-brochure.pdf" download>Download</a>
   </div>
@@ -331,7 +371,7 @@ Pre-footer CTA band is **already in the template**. For an *in-page* CTA (e.g. p
 
 ```html
 <article class="team-card">
-  <img class="team-card__photo" src="/assets/team-placeholder.jpg" alt="Portrait of [Name], [Role] at KVG Enterprises">
+  <img class="team-card__photo" src="/assets/avatar-placeholder.svg" alt="Portrait of [Name], [Role] at KVG Enterprises">
   <div class="team-card__body">
     <span class="team-card__name">[Name]</span>
     <span class="team-card__role">[Role]</span>
@@ -397,6 +437,11 @@ Modifiers: `btn--sm`, `btn--lg`, `btn--block`.
 
 **Nav item structure (has-panel):** the label is always a plain navigating `<a class="nav-link" href="…">` — the caret is a **separate** `<button class="nav-caret" aria-expanded>` sibling (never nested inside the link, never `preventDefault`ed). Clicking the label navigates; the caret only opens/closes the panel. Panels carry an `id` referenced by the caret's `aria-controls` (`mega-products`, `dropdown-about`).
 
+**Header logo:** the wordmark is three stacked lines — `.site-logo__kvg` (KVG, 32px, triad
+colours), `.site-logo__suffix` (Enterprises Pvt. Ltd, 16px) and `.site-logo__tagline`
+(Knowledge · Value · Growth, 10px uppercase, using the accessible `-600` triad variants because
+it is small text). It replaced the tagline band that used to sit under the hero.
+
 **Header CTA:** the main-bar "Request a Quote" is a plain `<a class="btn btn--primary" href="/contact/">` inside `.header-actions`; a scoped rule keeps it compact and single-line (`white-space:nowrap`, `--header-cta-pad-*`, 15px). Do not wrap it or add extra classes.
 
 **Per-product enquiry loop:** link every product "Enquire" / spec "Request" / detail CTA to `/contact/?product=<slug>`. The contact page's form (with `data-enquiry-form`) pre-checks that product and scrolls into view.
@@ -408,15 +453,15 @@ Modifiers: `btn--sm`, `btn--lg`, `btn--block`.
 On the current section's top-level nav link, add `is-active`:
 
 ```html
-<li class="nav-item"><a class="nav-link is-active" href="/industries/">Industries</a></li>
+<li class="nav-item"><a class="nav-link is-active" href="/quality/">Quality</a></li>
 ```
-For Products/About (which have panels), put `is-active` on the `.nav-link` inside the `.nav-item.has-panel`. Map: Home→Home, any `/products/*`→Products, `/industries/`→Industries, `/capabilities/`→Capabilities, `/quality/`→Quality, `/about/*`→About, `/downloads/`→Downloads, `/contact/`→Contact.
+For Products/About (which have panels), put `is-active` on the `.nav-link` inside the `.nav-item.has-panel`. Map: Home→Home, any `/products/*`→Products, `/capabilities/`→Capabilities, `/quality/`→Quality, `/about/team/`→Team, `/downloads/`→Downloads, `/contact/`→Contact.
 
 > **Shared header & footer are byte-identical across all 26 files** (the only per-page difference is the single `is-active` marker). When you change either block, edit the canonical markup and re-propagate to every page + `_template.html` with an exact between-markers replacement script, then verify with a normalized-hash sweep (strip `is-active`, collapse whitespace → exactly one distinct hash per block).
 
 ### Footer structure (5 columns)
 
-The footer is a deliberate 5-column grid (`.footer-grid`): **col-1** brand (`.footer-logo` white logo + `.footer-blurb` + `.footer-tagline`), **col-2** Products part 1 (Moulds + Blank-Side `.footer-catgroup`s), **col-3** Products part 2 (Neck Rings + Blow-Side `.footer-catgroup`s, no repeated title), **col-4** Company link list, **col-5** Contact `.footer-nap`. Footer titles stay non-heading elements (`.footer-col__title` / `.footer-catgroup > span`). Collapses 5→3→2→1 columns at 1024/720/480px. No spacer/phantom column.
+The footer is a deliberate 5-column grid (`.footer-grid`): **col-1** brand (`.footer-logo` white logo + `.footer-blurb` + `.footer-tagline`), **col-2** Products part 1 (Moulds + Blank-Side `.footer-catgroup`s), **col-3** Products part 2 (Neck Rings + Blow-Side `.footer-catgroup`s, no repeated title), **col-4** Company link list (no About entry — that page was merged into the landing page), **col-5** Contact `.footer-nap`. Footer titles stay non-heading elements (`.footer-col__title` / `.footer-catgroup > span`). Collapses 5→3→2→1 columns at 1024/720/480px. No spacer/phantom column.
 
 ### Quick-contact slide-out
 
@@ -438,7 +483,7 @@ Fill these `<head>` tokens. Titles ≤60 chars, descriptions 140–160 chars, **
 
 - `{{PAGE_PATH}}` = the page's path with trailing slash, e.g. `/products/neck-rings/`.
 - `{{OG_TYPE}}` = `website` (most), `product` (detail pages), `article` (news).
-- `{{OG_IMAGE}}` = a per-page real JPEG under `/assets/img/` at 1200×630 (e.g. `/assets/img/hero-home.jpg`, product pages use their own `/assets/img/{slug}.jpg`; product-detail JSON-LD `image` must match). Never the `/assets/*.svg` line-drawings — they render unreliably on social cards.
+- `{{OG_IMAGE}}` = `/assets/photo/og-default.jpg` (parts on a dark ground) or `/assets/photo/og-facility.jpg` (shop floor), both real 1200×630 JPEGs. Product pages point at their own `/assets/products/{slug}/{slug}-01.webp`, and the product-detail JSON-LD `image` must match. Never the `/assets/*.svg` line-drawings — they render unreliably on social cards.
 
 ### Page schema (inject at `{{PAGE_JSONLD}}`)
 

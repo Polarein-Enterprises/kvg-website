@@ -53,14 +53,26 @@
     "description": "Manufacturer and supplier of moulds, variables, spare parts and allied equipment for the container glass industry.",
     "email": "pankaj@kvgindia.com",
     "telephone": "+919910249102",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "J-87, UPSIDC Surajpur Industrial Area Site-5, Kasna Road, Block L, Surajpur Site V",
-      "addressLocality": "Greater Noida",
-      "addressRegion": "Uttar Pradesh",
-      "postalCode": "201312",
-      "addressCountry": "IN"
-    },
+    "address": [
+      {
+        "@type": "PostalAddress",
+        "name": "Site 1",
+        "streetAddress": "J-87, UPSIDC Surajpur Industrial Area Site-5, Kasna Road, Block L, Surajpur Site V",
+        "addressLocality": "Greater Noida",
+        "addressRegion": "Uttar Pradesh",
+        "postalCode": "201312",
+        "addressCountry": "IN"
+      },
+      {
+        "@type": "PostalAddress",
+        "name": "Site 2",
+        "streetAddress": "K-25, UPSIDC Surajpur Industrial Area Site-5, Kasna Road, Block L, Surajpur Site V",
+        "addressLocality": "Greater Noida",
+        "addressRegion": "Uttar Pradesh",
+        "postalCode": "201312",
+        "addressCountry": "IN"
+      }
+    ],
     "contactPoint": {
       "@type": "ContactPoint",
       "telephone": "+919910249102",
@@ -148,6 +160,7 @@
           <span class="site-logo__wordmark">
             <span class="site-logo__kvg"><span class="k">K</span><span class="v">V</span><span class="g">G</span></span>
             <span class="site-logo__suffix">Enterprises Pvt. Ltd</span>
+            <span class="site-logo__tagline"><span class="k">Knowledge</span> &middot; <span class="v">Value</span> &middot; <span class="g">Growth</span></span>
           </span>
         </a>
 
@@ -202,21 +215,10 @@
               </div>
             </li>
 
-            <li class="nav-item"><a class="nav-link" href="/industries/">Industries</a></li>
             <li class="nav-item"><a class="nav-link" href="/capabilities/">Capabilities</a></li>
             <li class="nav-item"><a class="nav-link" href="/quality/">Quality</a></li>
 
-            <!-- About dropdown -->
-            <li class="nav-item has-panel">
-              <a class="nav-link" href="/about/">About</a>
-              <button class="nav-caret" type="button" aria-expanded="false" aria-controls="dropdown-about" aria-label="Toggle About submenu">
-                <svg class="nav-link__caret" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
-              </button>
-              <ul class="nav-dropdown" id="dropdown-about">
-                <li><a href="/about/">About KVG</a></li>
-                <li><a href="/about/team/">Team of Experts</a></li>
-              </ul>
-            </li>
+            <li class="nav-item"><a class="nav-link" href="/about/team/">Team</a></li>
 
             <li class="nav-item"><a class="nav-link" href="/downloads/">Downloads</a></li>
             <li class="nav-item"><a class="nav-link" href="/contact/">Contact</a></li>
@@ -429,11 +431,9 @@
           <div class="footer-col">
             <p class="footer-col__title">Company</p>
             <ul>
-              <li><a href="/about/">About KVG</a></li>
               <li><a href="/about/team/">Team of Experts</a></li>
               <li><a href="/capabilities/">Capabilities</a></li>
               <li><a href="/quality/">Quality</a></li>
-              <li><a href="/industries/">Industries</a></li>
               <li><a href="/downloads/">Downloads</a></li>
               <li><a href="/contact/">Contact</a></li>
               <li><a href="/privacy/">Privacy Policy</a></li>
@@ -443,13 +443,24 @@
           <div class="footer-col">
             <p class="footer-col__title">Contact</p>
             <address class="footer-nap">
-              J-87, UPSIDC-Surajpur Industrial Area Site-5,<br>
-              Kasna Rd, Block L, Surajpur Site V<br>
-              Greater Noida, Uttar Pradesh 201312<br>
-              <a href="tel:+919910249102">+91 99102 49102</a><br>
-              <a href="tel:+919810006584">+91 98100 06584</a><br>
-              <a href="mailto:pankaj@kvgindia.com">pankaj@kvgindia.com</a><br>
-              Mon&ndash;Sat, 9:30&ndash;18:00 IST
+              <span class="footer-nap__unit">
+                <span class="footer-nap__site">Site 1</span>
+                J-87, UPSIDC-Surajpur Industrial Area Site-5,<br>
+                Kasna Rd, Block L, Surajpur Site V<br>
+                Greater Noida, Uttar Pradesh 201312
+              </span>
+              <span class="footer-nap__unit">
+                <span class="footer-nap__site">Site 2</span>
+                K-25, UPSIDC-Surajpur Industrial Area Site-5,<br>
+                Kasna Rd, Block L, Surajpur Site V<br>
+                Greater Noida, Uttar Pradesh 201312
+              </span>
+              <span class="footer-nap__contacts">
+                <a href="tel:+919910249102">+91 99102 49102</a><br>
+                <a href="tel:+919810006584">+91 98100 06584</a><br>
+                <a href="mailto:pankaj@kvgindia.com">pankaj@kvgindia.com</a><br>
+                Mon&ndash;Sat, 9:30&ndash;18:00 IST
+              </span>
             </address>
           </div>
         </div>

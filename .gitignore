@@ -14,3 +14,9 @@ __pycache__/
 # Leading slash is required: git is case-insensitive here (core.ignorecase=true),
 # so an unanchored "PRODUCTS/" would also ignore site/products/.
 /PRODUCTS/
+
+# Second raw client dump: the master cut of the KVG video (231 MB — above
+# GitHub's 100 MB per-file hard limit, so it can never be committed) and the
+# full-resolution Kaanch magazine page. The web-ready derivative of the
+# magazine page lives at site/assets/photo/kaanch-feature.jpg.
+/site/assets/vdo/

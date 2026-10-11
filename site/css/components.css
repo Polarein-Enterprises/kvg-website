@@ -196,11 +196,26 @@
 .site-logo { display: inline-flex; align-items: center; gap: var(--space-3); }
 .site-logo__mark { height: var(--header-logo-h); width: auto; display: block; }
 .site-logo__wordmark { display: flex; flex-direction: column; line-height: 1.05; }
-.site-logo__kvg { font-family: var(--font-display); font-weight: 700; font-size: 28px; letter-spacing: 0; }
+.site-logo__kvg { font-family: var(--font-display); font-weight: 700; font-size: 32px; letter-spacing: 0; }
 .site-logo__kvg .k { color: var(--color-accent-500); }
 .site-logo__kvg .v { color: var(--color-secondary-500); }
 .site-logo__kvg .g { color: var(--color-primary-500); }
-.site-logo__suffix { font-family: var(--font-display); font-weight: 600; font-size: 13px; color: var(--color-primary-500); white-space: nowrap; }
+.site-logo__suffix { font-family: var(--font-display); font-weight: 600; font-size: 16px; color: var(--color-primary-600); white-space: nowrap; }
+/* Knowledge . Value . Growth under the wordmark. Small text, so the triad uses
+   the accessible -600 variants rather than the brand -500s. */
+.site-logo__tagline {
+  font-family: var(--font-display);
+  font-weight: var(--fw-semibold);
+  font-size: 10px;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  margin-top: 3px;
+  color: var(--color-ink-300);
+}
+.site-logo__tagline .k { color: var(--color-accent-600); }
+.site-logo__tagline .v { color: var(--color-secondary-500); }
+.site-logo__tagline .g { color: var(--color-primary-600); }
 
 /* Primary nav */
 .primary-nav { display: flex; align-items: center; gap: var(--space-2); }
@@ -441,14 +456,32 @@
   position: relative;
   z-index: 2;
   padding-block: var(--space-12);
-  max-width: 760px;
+  /* Wider measure + a size that scales with the viewport: the headline is long,
+     and at a fixed 56px in a 760px box it broke to five tight lines. */
+  max-width: 54rem;
 }
-.hero h1 { color: var(--color-surface); margin-block: var(--space-3) var(--space-4); }
+.hero h1 {
+  color: var(--color-surface);
+  margin-block: 0 var(--space-6);
+  font-size: clamp(2.25rem, 1.4rem + 2.6vw, 3.25rem);
+  line-height: 1.12;
+  max-width: 20ch;
+}
 .hero .eyebrow { color: var(--color-primary-300); }
-.hero__sub { font-size: var(--text-lead-size); line-height: var(--text-lead-lh); color: var(--color-primary-100); margin-bottom: var(--space-6); }
+/* Keep the sub to two short lines. A long paragraph at lead size directly under
+   a display heading is what made this hero read as crowded. */
+.hero__sub {
+  font-size: var(--text-lead-size);
+  line-height: 1.65;
+  color: var(--color-primary-100);
+  margin-bottom: var(--space-9);
+  max-width: 48ch;
+}
 .hero__actions { display: flex; flex-wrap: wrap; gap: var(--space-4); }
 @media (max-width: 768px) {
   .hero__inner { padding-block: var(--space-9); }
+  .hero h1 { max-width: none; }
+  .hero__sub { margin-bottom: var(--space-7); }
 }
 
 /* Tagline band — Knowledge . Value . Growth tricolor strip (under hero) */
@@ -1274,6 +1307,19 @@
 .footer-tagline { color: var(--color-primary-200); font-family: var(--font-display); font-weight: var(--fw-semibold); letter-spacing: .04em; }
 .footer-nap { font-style: normal; font-size: var(--text-small-size); line-height: 1.7; }
 .footer-nap a { color: var(--color-primary-300); }
+/* Two works units (Site 1 / Site 2) listed in one address block. */
+.footer-nap__site {
+  display: block;
+  color: var(--color-surface);
+  font-family: var(--font-display);
+  font-weight: var(--fw-semibold);
+  font-size: var(--text-eyebrow-size);
+  letter-spacing: var(--text-eyebrow-tracking);
+  text-transform: uppercase;
+  margin-bottom: var(--space-1);
+}
+.footer-nap__unit { display: block; margin-bottom: var(--space-4); }
+.footer-nap__contacts { display: block; }
 .footer-social { display: flex; gap: var(--space-3); margin-top: var(--space-4); }
 .footer-social a { display: inline-flex; width: 36px; height: 36px; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,.2); border-radius: var(--radius-sm); }
 .footer-social svg { width: 18px; height: 18px; fill: currentColor; }
@@ -1487,6 +1533,31 @@
 
 @media (max-width: 560px) {
   .exhibition { aspect-ratio: 4/3; }
+}
+
+/* ==========================================================================
+   PRESS FEATURE (homepage) — a printed page reproduced as-is. Its own text is
+   part of the artwork, so it is capped at a width where that stays legible
+   and links out to the full-size file rather than being scaled down further.
+   ========================================================================== */
+.press-feature { margin: 0 auto; max-width: 960px; }
+.press-feature a {
+  display: block;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--motion-fast) var(--motion-ease);
+}
+.press-feature a:hover { box-shadow: var(--shadow-md); }
+.press-feature img { display: block; width: 100%; height: auto; }
+.press-feature figcaption {
+  margin-top: var(--space-3);
+  text-align: center;
+  font-size: var(--text-small-size);
+  line-height: var(--text-small-lh);
+  color: var(--color-ink-500);
 }
 
 /* ==========================================================================

@@ -6,6 +6,4 @@
     <path d="M360 200 h80 v70 q40 30 40 90 v100 h-160 v-100 q0 -60 40 -90 z" fill="#F5F8FA" stroke="#9AA5B1" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>
     <rect x="368" y="160" width="64" height="44" rx="8" fill="#F5F8FA" stroke="#9AA5B1" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>
     <line x1="320" y1="360" x2="480" y2="360" fill="none" stroke="#9AA5B1" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/></g>
-<text x="400" y="520" text-anchor="middle" font-family="Barlow, Arial, sans-serif" font-weight="600" font-size="40" fill="#5C6670">Beverage</text>
-<text x="400" y="558" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" fill="#9AA5B1">representative image</text>
 </svg>

@@ -8,6 +8,4 @@
     <rect x="340" y="180" width="120" height="50" rx="10" fill="#F5F8FA" stroke="#9AA5B1" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>
     <line x1="340" y1="300" x2="460" y2="300" fill="none" stroke="#9AA5B1" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>
     <line x1="340" y1="340" x2="460" y2="340" fill="none" stroke="#9AA5B1" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/></g>
-<text x="400" y="520" text-anchor="middle" font-family="Barlow, Arial, sans-serif" font-weight="600" font-size="40" fill="#5C6670">Food</text>
-<text x="400" y="558" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" fill="#9AA5B1">representative image</text>
 </svg>
