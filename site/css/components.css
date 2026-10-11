@@ -1307,35 +1307,9 @@
 .footer-tagline { color: var(--color-primary-200); font-family: var(--font-display); font-weight: var(--fw-semibold); letter-spacing: .04em; }
 .footer-nap { font-style: normal; font-size: var(--text-small-size); line-height: 1.7; }
 .footer-nap a { color: var(--color-primary-300); }
-/* Two works units (Site 1 / Site 2) listed in one address block. */
-.footer-nap__site {
-  display: block;
-  color: var(--color-surface);
-  font-family: var(--font-display);
-  font-weight: var(--fw-semibold);
-  font-size: var(--text-eyebrow-size);
-  letter-spacing: var(--text-eyebrow-tracking);
-  text-transform: uppercase;
-  margin-bottom: var(--space-1);
-}
-.footer-nap__unit { display: block; margin-bottom: var(--space-4); }
-.footer-nap__contacts { display: block; }
 .footer-social { display: flex; gap: var(--space-3); margin-top: var(--space-4); }
 .footer-social a { display: inline-flex; width: 36px; height: 36px; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,.2); border-radius: var(--radius-sm); }
 .footer-social svg { width: 18px; height: 18px; fill: currentColor; }
-/* Footer category groups with product sub-lists */
-.footer-catgroup { margin-bottom: var(--space-5); }
-.footer-catgroup ul { padding: 0; margin: 0; }
-.footer-catgroup > span {
-  display: block;
-  color: var(--color-surface);
-  font-weight: var(--fw-semibold);
-  font-size: var(--text-small-size);
-  line-height: var(--text-small-lh);
-  margin-bottom: var(--space-2);
-}
-.footer-catgroup > span a { color: var(--color-surface); }
-.footer-catgroup > span a:hover { color: var(--color-primary-200); }
 /* Bottom bar */
 .footer-bottom {
   position: relative;
@@ -1598,50 +1572,106 @@
 }
 
 /* ==========================================================================
-   FOOTER LAYOUT — single centred column at the top, two centred columns in the
-   middle, single centred column at the bottom.
+   FOOTER LAYOUT
+   Desktop (>=1025px): five left-aligned columns — brand | Company | Site 1 |
+   Site 2 | Contact. The markup nests these inside .footer-top / .footer-mid,
+   so both wrappers are flattened with display:contents and their children
+   become direct grid items.
+   Below 1025px: the wrappers reappear and the footer stacks and centres.
    ========================================================================== */
-.footer-top {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-3);
-  padding-bottom: var(--space-8);
-  border-bottom: 1px solid rgba(255,255,255,.12);
-}
-.footer-top .footer-logo { justify-content: center; margin-bottom: 0; }
-.footer-top .footer-blurb { max-width: 60ch; margin: 0; }
-.footer-top .footer-tagline { margin: 0; }
-.footer-top .footer-social { justify-content: center; }
 
-.footer-mid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-8);
-  padding-block: var(--space-8);
-  text-align: center;
-}
-.footer-mid .footer-col { text-align: center; }
-.footer-mid .footer-col__title { text-align: center; }
-.footer-mid .footer-col ul { align-items: center; }
-.footer-mid .footer-catgroup { text-align: center; }
-.footer-mid .footer-catgroup > span { display: block; text-align: center; }
-.footer-mid .footer-nap { text-align: center; }
+/* ---- Shared ---- */
 .footer-mid address { font-style: normal; }
 
+/* ---- Desktop: four columns ---- */
+@media (min-width: 1025px) {
+  .site-footer__inner {
+    display: grid;
+    grid-template-columns: 1.7fr 1fr 1.15fr 1.15fr 1fr;
+    gap: var(--space-7) var(--space-8);
+    align-items: start;
+  }
+  .footer-top,
+  .footer-mid { display: contents; }
+
+  .site-footer__inner > * > .footer-col,
+  .site-footer__inner .footer-col { text-align: left; }
+  .footer-col ul { align-items: flex-start; }
+
+  /* The brand column carries the blurb, so give it a comfortable measure. */
+  .footer-top .footer-col { max-width: 38ch; }
+  .footer-top .footer-logo { justify-content: flex-start; margin-bottom: var(--space-4); }
+  .footer-top .footer-social { justify-content: flex-start; }
+
+  /* With the three wrappers flattened, the grid items fall in DOM order:
+     brand, Products, Company, Contact — which is the column order we want.
+     Do not pin rows here; that fights auto-placement and scrambles them. */
+
+  .footer-nap { text-align: left; }
+
+  .footer-bottom__inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+    gap: var(--space-5);
+  }
+}
+
+/* Five columns is tight below ~1250px, so the brand drops to its own full-width
+   row above the four link/address columns rather than squeezing all five. */
+@media (min-width: 1025px) and (max-width: 1249.98px) {
+  .site-footer__inner {
+    grid-template-columns: 1fr 1.15fr 1.15fr 1fr;
+    gap: var(--space-7) var(--space-6);
+  }
+  .footer-top .footer-col {
+    grid-column: 1 / -1;
+    max-width: 70ch;
+    padding-bottom: var(--space-6);
+    border-bottom: 1px solid rgba(255,255,255,.12);
+  }
+}
+
+/* ---- Tablet and phone: stacked and centred ---- */
+@media (max-width: 1024px) {
+  .footer-top {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3);
+    padding-bottom: var(--space-8);
+    border-bottom: 1px solid rgba(255,255,255,.12);
+  }
+  .footer-top .footer-logo { justify-content: center; margin-bottom: 0; }
+  .footer-top .footer-blurb { max-width: 60ch; margin: 0; }
+  .footer-top .footer-tagline { margin: 0; }
+  .footer-top .footer-social { justify-content: center; }
+
+  .footer-mid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-8);
+    padding-block: var(--space-8);
+    text-align: center;
+  }
+  .footer-mid .footer-col,
+  .footer-mid .footer-col__title,
+  .footer-mid .footer-nap { text-align: center; }
+  .footer-mid .footer-col ul { align-items: center; }
+
+
+  .footer-bottom__inner {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: var(--space-2);
+  }
+}
+
+/* One column on phones: two centred columns squeezed the address to a sliver. */
 @media (max-width: 560px) {
-  .footer-mid { gap: var(--space-6); padding-block: var(--space-6); }
+  .footer-mid { grid-template-columns: 1fr; gap: var(--space-7); padding-block: var(--space-6); }
 }
-
-.footer-bottom__inner {
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  gap: var(--space-2);
-}
-
-/* Company + Contact share one of the two middle columns */
-.footer-stack { display: flex; flex-direction: column; gap: var(--space-7); text-align: center; }
-.footer-stack .footer-col ul { align-items: center; }
